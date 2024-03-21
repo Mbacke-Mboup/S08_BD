@@ -240,20 +240,13 @@ namespace S08_Labo.Controllers
 
         {
             IEnumerable<VwListeArtiste> vWartistes = await _context.VwListeArtistes.ToListAsync();
-            List<NbSpecialiteViewModel> nbEmpl0YesParSpecialites = new List<NbSpecialiteViewModel>();
-            IEnumerable<Artiste> artistes = await _context.Artistes.ToListAsync();
-            IEnumerable<Employe> employes = await _context.Employes.ToListAsync();
-
-
             var requete = vWartistes.Select(v => new
             {
                 specialite = v.Specialite,
                 id = v.ArtisteId
             }).GroupBy(s => s.specialite).Select(b => new NbSpecialiteViewModel(b.Key, b.Count())) ;
-            foreach(NbSpecialiteViewModel n in requete){
-            nbEmpl0YesParSpecialites.Add(n);
-            }
-            return View(nbEmpl0YesParSpecialites);
+            
+            return View(requete);
         }
 
         public async Task<IActionResult> Query6()
