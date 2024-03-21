@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using S08_Labo.Data;
 using S08_Labo.Models;
 using S08_Labo.ViewModel;
+using S08_Labo.ViewModels;
 
 namespace S08_Labo.Controllers
 {
@@ -177,6 +178,90 @@ namespace S08_Labo.Controllers
         private bool ArtisteExists(int id)
         {
           return (_context.Artistes?.Any(e => e.ArtisteId == id)).GetValueOrDefault();
+        }
+
+        public async Task<IActionResult> Query1()
+        {
+            // Données des employés embauchés en 2023 (Utilisez VwListeArtiste)
+            DateTime date = new DateTime(2023, 1, 1);
+            IEnumerable<VwListeArtiste> artistes = await _context.VwListeArtistes.Where(a => a.DateEmbauche >= date).ToListAsync();
+
+            // N'oubliez pas d'envoyer artistes à la vue Razor ! 
+            return View(artistes);
+        }
+
+        public async Task<IActionResult> Query2()
+        {
+            IEnumerable<VwListeArtiste> artistes = await _context.VwListeArtistes.Where(a => a.Specialite == "modélisation 3D").ToListAsync();
+
+            return View(artistes);
+        }
+
+        public async Task<IActionResult> Query3()
+        {
+            // Prénom et nom de tous les employés, classés par prénom ascendant
+            // Concaténez prénoms et noms (avec une espace au centre) pour simplement obtenir une liste de strings.
+            IEnumerable<Employe> employes = await _context.Employes.OrderBy(e=> e.Prenom).ToListAsync();
+            List<string> noms = new List<string>();
+
+            foreach(Employe employe in employes)
+            {
+                noms.Add(employe.Prenom + " " + employe.Nom);
+                
+            }
+            return View(noms);
+        }
+
+        public async Task<IActionResult> Query4()
+        {
+            
+            IEnumerable<VwListeArtiste> vWartistes = await _context.VwListeArtistes.ToListAsync();
+            IEnumerable<Artiste> artistes = await _context.Artistes.ToListAsync();
+            IEnumerable<Employe> employes = await _context.Employes.ToListAsync();
+            List<ArtisteEmployeViewModel> viewModels = new List<ArtisteEmployeViewModel>();
+
+            vWartistes.ToList().ForEach(async v =>
+            {
+                ArtisteEmployeViewModel view = new ArtisteEmployeViewModel();
+                view.Artiste = artistes.FirstOrDefault(a => a.ArtisteId == v.ArtisteId);
+                view.Employe = employes.FirstOrDefault(a => a.EmployeId == v.EmployeId);
+                viewModels.Add(view);
+            });
+
+
+
+
+            // N'oubliez pas d'envoyer artistes à la vue Razor ! 
+            return View(viewModels);
+
+        }
+
+        public async Task<IActionResult> Query5()
+
+        {
+            IEnumerable<VwListeArtiste> vWartistes = await _context.VwListeArtistes.ToListAsync();
+            List<NbSpecialiteViewModel> nbEmpl0YesParSpecialites = new List<NbSpecialiteViewModel>();
+            IEnumerable<Artiste> artistes = await _context.Artistes.ToListAsync();
+            IEnumerable<Employe> employes = await _context.Employes.ToListAsync();
+
+
+            var requete = vWartistes.Select(v => new
+            {
+                specialite = v.Specialite,
+                id = v.ArtisteId
+            }).GroupBy(s => s.specialite).Select(b => new NbSpecialiteViewModel(b.Key, b.Count())) ;
+            foreach(NbSpecialiteViewModel n in requete){
+            nbEmpl0YesParSpecialites.Add(n);
+            }
+            return View(nbEmpl0YesParSpecialites);
+        }
+
+        public async Task<IActionResult> Query6()
+        {
+            IEnumerable<VwNbEmpl0yesParSpecialite> artistes = await _context.VwNbEmpl0yesParSpecialites.ToListAsync();
+
+            return View(artistes);
+
         }
     }
 }

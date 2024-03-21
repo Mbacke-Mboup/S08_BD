@@ -7,7 +7,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 
 builder.Services.AddDbContext<S08_EmployesContext>(
-    options => options.UseSqlServer(builder.Configuration.GetConnectionString("BDEmployee")));
+    options =>
+    {
+        options.UseSqlServer(builder.Configuration.GetConnectionString("BDEmployee"));
+        options.UseLazyLoadingProxies();
+
+    });
 var app = builder.Build();
 
 

@@ -20,6 +20,7 @@ namespace S08_Labo.Data
         public virtual DbSet<Artiste> Artistes { get; set; } = null!;
         public virtual DbSet<Employe> Employes { get; set; } = null!;
         public virtual DbSet<VwListeArtiste> VwListeArtistes { get; set; } = null!;
+        public virtual DbSet<VwNbEmpl0yesParSpecialite> VwNbEmpl0yesParSpecialites { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -50,6 +51,11 @@ namespace S08_Labo.Data
                 entity.ToView("VW_ListeArtistes", "Employes");
 
                 entity.Property(e => e.NoTel).IsFixedLength();
+            });
+
+            modelBuilder.Entity<VwNbEmpl0yesParSpecialite>(entity =>
+            {
+                entity.ToView("VW_NbEmpl0yesParSpecialite", "Employes");
             });
 
             OnModelCreatingPartial(modelBuilder);

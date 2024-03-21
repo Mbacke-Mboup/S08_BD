@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\2274252\\source\\repos\\S08_Labo\\S08_Labo.csproj": {}
+    "C:\\Users\\2274252\\Desktop\\S08_BD\\S08_Labo.csproj": {}
   },
   "projects": {
-    "C:\\Users\\2274252\\source\\repos\\S08_Labo\\S08_Labo.csproj": {
+    "C:\\Users\\2274252\\Desktop\\S08_BD\\S08_Labo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\2274252\\source\\repos\\S08_Labo\\S08_Labo.csproj",
+        "projectUniqueName": "C:\\Users\\2274252\\Desktop\\S08_BD\\S08_Labo.csproj",
         "projectName": "S08_Labo",
-        "projectPath": "C:\\Users\\2274252\\source\\repos\\S08_Labo\\S08_Labo.csproj",
+        "projectPath": "C:\\Users\\2274252\\Desktop\\S08_BD\\S08_Labo.csproj",
         "packagesPath": "C:\\Users\\2274252\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\2274252\\source\\repos\\S08_Labo\\obj\\",
+        "outputPath": "C:\\Users\\2274252\\Desktop\\S08_BD\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\2274252\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -22,7 +22,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\sdk\\7.0.313\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
+          "C:\\Program Files\\dotnet\\sdk\\7.0.314\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -48,6 +48,10 @@
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.28, )"
+            },
+            "Microsoft.EntityFrameworkCore.Proxies": {
               "target": "Package",
               "version": "[6.0.28, )"
             },
@@ -80,19 +84,19 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[6.0.27, 6.0.27]"
+              "version": "[6.0.28, 6.0.28]"
             },
             {
               "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[6.0.27, 6.0.27]"
+              "version": "[6.0.28, 6.0.28]"
             },
             {
               "name": "Microsoft.NETCore.App.Ref",
-              "version": "[6.0.27, 6.0.27]"
+              "version": "[6.0.28, 6.0.28]"
             },
             {
               "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[6.0.27, 6.0.27]"
+              "version": "[6.0.28, 6.0.28]"
             }
           ],
           "frameworkReferences": {
@@ -103,7 +107,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.313\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.314\\RuntimeIdentifierGraph.json"
         }
       }
     }
